@@ -1,0 +1,97 @@
+2024-08-03 15:13:35,789 - Main - INFO - ----------------------     Starting main.py       ----------------------------
+2024-08-03 15:13:35,789 - Main - INFO - Current run settings: DATASET_PERCENTAGE_FOR_BEST_K=None, DATASET_PERCENTAGE_FOR_ANALYSIS=None
+2024-08-03 15:13:35,789 - Main - INFO - Finding best k for dataset 'Wine classified by quality'
+2024-08-03 15:14:13,723 - Main - INFO - ----------------------     Starting main.py       ----------------------------
+2024-08-03 15:14:13,724 - Main - INFO - Current run settings: DATASET_PERCENTAGE_FOR_BEST_K=None, DATASET_PERCENTAGE_FOR_ANALYSIS=None
+2024-08-03 15:14:13,724 - Main - INFO - Finding best k for dataset 'Wine classified by quality'
+2024-08-03 15:14:20,903 - Main - INFO - Best k for dataset 'Wine classified by quality' i 3, analyzing dataset...
+2024-08-03 15:14:24,275 - Main - INFO - Successfully analyzed dataset 'Wine classified by quality', Correlation Coefficient: -0.048047143019992425
+2024-08-03 16:10:26,179 - Main - INFO - ----------------------     Starting main.py       ----------------------------
+2024-08-03 16:10:26,179 - Main - INFO - Current run settings: DATASET_PERCENTAGE_FOR_BEST_K=None, DATASET_PERCENTAGE_FOR_ANALYSIS=None
+2024-08-03 16:10:26,179 - Main - INFO - Finding best k for dataset 'Pima indians diabetes'
+2024-08-03 16:10:30,655 - Main - INFO - Best k for dataset 'Pima indians diabetes' is 23, analyzing dataset...
+2024-08-03 16:10:33,917 - Main - INFO - Successfully analyzed dataset 'Pima indians diabetes', Correlation Coefficient: 0.16594346221273165
+2024-08-03 16:14:32,188 - Main - INFO - ----------------------     Starting main.py       ----------------------------
+2024-08-03 16:14:32,188 - Main - INFO - Current run settings: DATASET_PERCENTAGE_FOR_BEST_K=None, DATASET_PERCENTAGE_FOR_ANALYSIS=None
+2024-08-03 16:14:32,188 - Main - INFO - Finding best k for dataset 'Banknote authenticity based on mesures'
+2024-08-03 16:14:36,685 - Main - INFO - Best k for dataset 'Banknote authenticity based on mesures' is 4, analyzing dataset...
+2024-08-03 16:14:39,972 - Main - INFO - Successfully analyzed dataset 'Banknote authenticity based on mesures', Correlation Coefficient: 0.05162079525706223
+2024-08-03 16:41:53,914 - Main - INFO - ----------------------     Starting main.py       ----------------------------
+2024-08-03 16:41:53,914 - Main - INFO - Current run settings: DATASET_PERCENTAGE_FOR_BEST_K=0.005, DATASET_PERCENTAGE_FOR_ANALYSIS=0.01
+2024-08-03 16:41:53,914 - Main - INFO - Finding best k for dataset 'Shuttle'
+2024-08-03 16:41:58,413 - Main - INFO - Best k for dataset 'Shuttle' is 3, analyzing dataset...
+2024-08-03 16:42:01,686 - Main - INFO - Successfully analyzed dataset 'Shuttle', Correlation Coefficient: 0.013940349361249806
+2024-08-03 16:54:14,706 - Main - INFO - ----------------------     Starting main.py       ----------------------------
+2024-08-03 16:54:14,706 - Main - INFO - Current run settings: DATASET_PERCENTAGE_FOR_BEST_K=None, DATASET_PERCENTAGE_FOR_ANALYSIS=None
+2024-08-03 16:54:14,706 - Main - INFO - Finding best k for dataset 'Phishing websites features'
+2024-08-03 16:55:24,419 - Main - INFO - Best k for dataset 'Phishing websites features' is 3, analyzing dataset...
+2024-08-03 16:55:34,644 - Main - INFO - Successfully analyzed dataset 'Phishing websites features', Correlation Coefficient: -0.16161180956574606
+2024-08-03 19:24:33,477 - Main - INFO - ----------------------     Starting main.py       ----------------------------
+2024-08-03 19:24:33,477 - Main - INFO - Current run settings: DATASET_PERCENTAGE_FOR_BEST_K=0.005, DATASET_PERCENTAGE_FOR_ANALYSIS=0.01
+2024-08-03 19:24:33,477 - Main - INFO - Finding best k for dataset 'Bar crawl'
+2024-08-03 19:24:38,082 - Main - INFO - Best k for dataset 'Bar crawl' is 3, analyzing dataset...
+2024-08-03 19:24:41,565 - Main - INFO - Successfully analyzed dataset 'Bar crawl', Correlation Coefficient: 0.07831415046871962
+2024-08-03 19:35:48,473 - Main - INFO - ----------------------     Starting main.py       ----------------------------
+2024-08-03 19:35:48,473 - Main - INFO - Current run settings: DATASET_PERCENTAGE_FOR_BEST_K=0.005, DATASET_PERCENTAGE_FOR_ANALYSIS=0.01
+2024-08-03 19:35:48,473 - Main - INFO - Finding best k for dataset 'Polish companies bankruptcy'
+2024-08-03 19:35:48,474 - Main - INFO - Failed to find best k for dataset 'Polish companies bankruptcy' using k=3, analyzing dataset...
+2024-08-03 19:35:48,474 - Main - INFO - Failed to analyze dataset 'Polish companies bankruptcy'
+2024-08-03 19:36:47,993 - Main - INFO - ----------------------     Starting main.py       ----------------------------
+2024-08-03 19:36:47,993 - Main - INFO - Current run settings: DATASET_PERCENTAGE_FOR_BEST_K=0.005, DATASET_PERCENTAGE_FOR_ANALYSIS=0.01
+2024-08-03 19:36:47,993 - Main - INFO - Finding best k for dataset 'Polish companies bankruptcy'
+2024-08-03 19:38:55,829 - Main - INFO - ----------------------     Starting main.py       ----------------------------
+2024-08-03 19:38:55,829 - Main - INFO - Current run settings: DATASET_PERCENTAGE_FOR_BEST_K=0.005, DATASET_PERCENTAGE_FOR_ANALYSIS=0.01
+2024-08-03 19:38:55,829 - Main - INFO - Finding best k for dataset 'Polish companies bankruptcy'
+2024-08-03 19:39:25,512 - Main - INFO - ----------------------     Starting main.py       ----------------------------
+2024-08-03 19:39:25,512 - Main - INFO - Current run settings: DATASET_PERCENTAGE_FOR_BEST_K=0.005, DATASET_PERCENTAGE_FOR_ANALYSIS=0.01
+2024-08-03 19:39:25,512 - Main - INFO - Finding best k for dataset 'Polish companies bankruptcy'
+2024-08-03 19:40:31,506 - Main - INFO - ----------------------     Starting main.py       ----------------------------
+2024-08-03 19:40:31,506 - Main - INFO - Current run settings: DATASET_PERCENTAGE_FOR_BEST_K=0.005, DATASET_PERCENTAGE_FOR_ANALYSIS=0.01
+2024-08-03 19:40:31,506 - Main - INFO - Finding best k for dataset 'Polish companies bankruptcy'
+2024-08-03 19:57:56,635 - Main - INFO - ----------------------     Starting main.py       ----------------------------
+2024-08-03 19:57:56,636 - Main - INFO - Current run settings: DATASET_PERCENTAGE_FOR_BEST_K=0.005, DATASET_PERCENTAGE_FOR_ANALYSIS=0.01
+2024-08-03 19:57:56,636 - Main - INFO - Finding best k for dataset 'Iranian telecom customer churn'
+2024-08-03 19:57:57,721 - Main - INFO - Best k for dataset 'Iranian telecom customer churn' is 4, analyzing dataset...
+2024-08-03 19:58:00,902 - Main - INFO - Successfully analyzed dataset 'Iranian telecom customer churn', Correlation Coefficient: 0.0751944794239736
+2024-08-03 20:00:13,911 - Main - INFO - ----------------------     Starting main.py       ----------------------------
+2024-08-03 20:00:13,911 - Main - INFO - Current run settings: DATASET_PERCENTAGE_FOR_BEST_K=0.005, DATASET_PERCENTAGE_FOR_ANALYSIS=0.01
+2024-08-03 20:00:13,911 - Main - INFO - Finding best k for dataset 'Taiwanese bakruptcy prediction'
+2024-08-03 20:00:15,166 - Main - INFO - Best k for dataset 'Taiwanese bakruptcy prediction' is 3, analyzing dataset...
+2024-08-03 20:00:18,441 - Main - INFO - Successfully analyzed dataset 'Taiwanese bakruptcy prediction', Correlation Coefficient: -0.18973797953107316
+2024-08-03 20:04:30,211 - Main - INFO - ----------------------     Starting main.py       ----------------------------
+2024-08-03 20:04:30,212 - Main - INFO - Current run settings: DATASET_PERCENTAGE_FOR_BEST_K=0.005, DATASET_PERCENTAGE_FOR_ANALYSIS=0.01
+2024-08-03 20:04:30,212 - Main - INFO - Finding best k for dataset 'Room occupancy estimation'
+2024-08-03 20:04:31,208 - Main - INFO - Best k for dataset 'Room occupancy estimation' is 9, analyzing dataset...
+2024-08-03 20:04:34,334 - Main - INFO - Successfully analyzed dataset 'Room occupancy estimation', Correlation Coefficient: -0.1125394577896331
+2024-08-03 20:06:31,040 - Main - INFO - ----------------------     Starting main.py       ----------------------------
+2024-08-03 20:06:31,040 - Main - INFO - Current run settings: DATASET_PERCENTAGE_FOR_BEST_K=None, DATASET_PERCENTAGE_FOR_ANALYSIS=None
+2024-08-03 20:06:31,040 - Main - INFO - Finding best k for dataset 'Wine classified by quality'
+2024-08-03 20:06:38,110 - Main - INFO - Best k for dataset 'Wine classified by quality' is 3, analyzing dataset...
+2024-08-03 20:06:41,512 - Main - INFO - Successfully analyzed dataset 'Wine classified by quality', Correlation Coefficient: -0.048047143019992425
+2024-08-03 20:06:41,512 - Main - INFO - Finding best k for dataset 'Pima indians diabetes'
+2024-08-03 20:06:45,964 - Main - INFO - Best k for dataset 'Pima indians diabetes' is 23, analyzing dataset...
+2024-08-03 20:06:46,262 - Main - INFO - Successfully analyzed dataset 'Pima indians diabetes', Correlation Coefficient: 0.16594346221273165
+2024-08-03 20:06:46,262 - Main - INFO - Finding best k for dataset 'Banknote authenticity based on mesures'
+2024-08-03 20:06:50,740 - Main - INFO - Best k for dataset 'Banknote authenticity based on mesures' is 4, analyzing dataset...
+2024-08-03 20:06:51,135 - Main - INFO - Successfully analyzed dataset 'Banknote authenticity based on mesures', Correlation Coefficient: 0.05162079525706223
+2024-08-03 20:06:51,135 - Main - INFO - Finding best k for dataset 'Shuttle'
+2024-08-03 20:08:52,603 - Main - INFO - Best k for dataset 'Shuttle' is 3, analyzing dataset...
+2024-08-03 20:09:00,924 - Main - INFO - Successfully analyzed dataset 'Shuttle', Correlation Coefficient: 0.08587896089295884
+2024-08-03 20:09:00,925 - Main - INFO - Finding best k for dataset 'Phishing websites features'
+2024-08-03 20:10:14,723 - Main - INFO - Best k for dataset 'Phishing websites features' is 3, analyzing dataset...
+2024-08-03 20:10:22,346 - Main - INFO - Successfully analyzed dataset 'Phishing websites features', Correlation Coefficient: -0.16161180956574606
+2024-08-03 20:10:22,346 - Main - INFO - Finding best k for dataset 'Bar crawl'
+2024-08-03 20:12:00,705 - Main - INFO - Best k for dataset 'Bar crawl' is 3, analyzing dataset...
+2024-08-03 20:12:09,133 - Main - INFO - Successfully analyzed dataset 'Bar crawl', Correlation Coefficient: 0.028172444374538426
+2024-08-03 20:12:09,133 - Main - INFO - Finding best k for dataset 'Iranian telecom customer churn'
+2024-08-03 20:12:15,796 - Main - INFO - Best k for dataset 'Iranian telecom customer churn' is 4, analyzing dataset...
+2024-08-03 20:12:16,248 - Main - INFO - Successfully analyzed dataset 'Iranian telecom customer churn', Correlation Coefficient: -0.07122835221454622
+2024-08-03 20:12:16,248 - Main - INFO - Finding best k for dataset 'Taiwanese bakruptcy prediction'
+2024-08-03 20:12:24,712 - Main - INFO - Best k for dataset 'Taiwanese bakruptcy prediction' is 6, analyzing dataset...
+2024-08-03 20:12:25,837 - Main - INFO - Successfully analyzed dataset 'Taiwanese bakruptcy prediction', Correlation Coefficient: 0.001324382081740473
+2024-08-03 20:12:25,837 - Main - INFO - Finding best k for dataset 'Room occupancy estimation'
+2024-08-03 20:12:36,892 - Main - INFO - Best k for dataset 'Room occupancy estimation' is 3, analyzing dataset...
+2024-08-03 20:12:38,145 - Main - INFO - Successfully analyzed dataset 'Room occupancy estimation', Correlation Coefficient: 0.02784496188102364
+2024-08-03 20:12:38,145 - Main - INFO - Finding best k for dataset 'Text snippets classified by author'
+2024-08-04 05:50:00,264 - Main - INFO - Best k for dataset 'Text snippets classified by author' is 14, analyzing dataset...
+2024-08-04 06:48:18,762 - Main - INFO - Successfully analyzed dataset 'Text snippets classified by author', Correlation Coefficient: -0.04865046442793662
