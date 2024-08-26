@@ -8,5 +8,10 @@ datasets = {
     "Iranian telecom customer churn": "customer_churn",  # Instances: 3150 Attributes: 14 Size: 129KB
     "Taiwanese bakruptcy prediction": "taiwanese_bakruptcy_prediction", # Instances: 6819 Attributes: 97 Size: 11188KB
     "Room occupancy estimation": "room_occupancy_estimation", # Instances: 10129 Attributes: 17 Size: 722KB
-    "Text snippets classified by author": "snippet_writers_ngram" # Instances: 195806 Attributes: 2079 Size: 797591KB
+    "Dexter": "dexter", # Instances: 300 Attributes: 20000 Size: 11902KB
+    "Dorothea": "dorothea", # Instances: 800 Attributes: 6061 Size: 12279KB
+    "Gisette": "gisette", # Instances: 6000 Attributes: 5000
+    "Isolet": "isolet", # Instances: 7797 Attributes: 617
+    "Musk": "musk", # Instances: 6598 Attributes: 166
+    # "Text snippets classified by author": "snippet_writers_ngram" # Instances: 195806 Attributes: 2079 Size: 797591KB
 }
