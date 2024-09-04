@@ -87,11 +87,11 @@ def analyze_dataset(dataset_name: str, k: int, n_jobs: int = 1, pre_loaded_datas
             average_lids[3] / i,
         )
 
-        mean_Nk = np.mean(in_degrees_list)
-        std_Nk = np.std(in_degrees_list, ddof=0)
-        third_moment = np.mean((in_degrees_list - mean_Nk) ** 3)
-        skewness = third_moment / (std_Nk ** 3)
-
+        # mean_Nk = np.mean(in_degrees_list)
+        # std_Nk = np.std(in_degrees_list, ddof=0)
+        # third_moment = np.mean((in_degrees_list - mean_Nk) ** 3)
+        # skewness = third_moment / (std_Nk ** 3)
+        skewness = skew(np.array(in_degrees_list))
         correlation_coefficient_LPCA = np.corrcoef(in_degrees_list, local_intrinsic_dimensionality_list_LPCA)[0, 1]
         correlation_coefficient_MLE = np.corrcoef(in_degrees_list, local_intrinsic_dimensionality_list_MLE)[0, 1]
         correlation_coefficient_MLENB = np.corrcoef(in_degrees_list, local_intrinsic_dimensionality_list_MLENB)[0, 1]

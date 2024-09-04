@@ -1,4 +1,4 @@
-Skewness: 0.0, Average LID: LPCA: 2.153015873015873  |||  MLE: 1.609382288754176  |||  MLENB: 1.609382288754176  |||  TLE: nan
+Skewness: -0.2284765536423407, Average LID: LPCA: 2.153015873015873  |||  MLE: 1.609382288754176  |||  MLENB: 1.609382288754176  |||  TLE: nan
 LPCA: 0.17586497993703323  |||  MLE: -0.2586150995050067  |||  MLENB: -0.2586150995050067  |||  TLE: nan
 node;in_degree;local_intrinsic_dimensionality_LPCA;local_intrinsic_dimensionality_MLE;local_intrinsic_dimensionality_MLENB;local_intrinsic_dimensionality_TLE
 0;114;2;0.0;0.0;1.515342763809854
