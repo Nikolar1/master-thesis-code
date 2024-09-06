@@ -170,7 +170,14 @@ def cross_validate(X, y, classifiers, n_jobs=1, n_neighbours=3):
 
 if __name__ == '__main__':
     timestamp = f"{datetime.datetime.now().timestamp()}".split(".")[0]
-    datasets_to_check = {"mfeat-factors":"mfeat-factors", "mfeat-fourier":"mfeat-fourier", "optdigits":"optdigits", "segment":"segment", "spectrometer":"spectrometer", "vehicle":"vehicle"}
+    datasets_to_check = {
+        "mfeat-factors":"mfeat-factors",
+        "mfeat-fourier":"mfeat-fourier",
+        "optdigits":"optdigits",
+        "segment":"segment",
+        "spectrometer":"spectrometer",
+        "vehicle":"vehicle"
+    }
     # datasets_to_check = datasets
     for dataset_title, dataset_name in datasets_to_check.items():
         Y, X = dataset_analysis.load_dataset(dataset_name)
@@ -190,7 +197,7 @@ if __name__ == '__main__':
                 knn_classifier_lid(k=k),
                 knn_classifier_lid_and_hubness_weight(k=k)
             ]
-            accuracy_scores = cross_validate(np.array(X), np.array(Y), classifiers, n_jobs=12)
+            accuracy_scores = cross_validate(np.array(X), np.array(Y), classifiers, n_jobs=12, n_neighbours=k)
             knn_score = accuracy_scores.get(classifiers[0]._name)[1]
             knn_hubness_weighted_score = accuracy_scores.get(classifiers[1]._name)[1]
 
