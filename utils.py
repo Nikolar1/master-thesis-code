@@ -1,7 +1,7 @@
 import networkx as nx
 import numpy as np
 import skdim
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.neighbors import KNeighborsClassifier, NearestNeighbors
 
 import dataset_analysis
 
@@ -74,6 +74,16 @@ def calculate_lid_and_bad_hubness_weights(X, Y, k, pre_trained_classifier = None
     else:
         knn = pre_trained_classifier
     return calculate_bad_hubness_weights(X, Y, knn, n_jobs), calculate_lid_weights(X, Y, k, knn, n_jobs)
+
+
+def find_outliers_knn(data, n_neighbors=3, n_jobs = 1):
+    nn = NearestNeighbors(n_neighbors=n_neighbors, n_jobs=n_jobs)
+    nn.fit(data)
+
+    distances, _ = nn.kneighbors(X=data, return_distance=True)
+    k_distances = distances[:, n_neighbors - 1]
+
+    return k_distances
 
 if __name__ == '__main__':
     Y, X = dataset_analysis.load_dataset("musk")
