@@ -2,7 +2,7 @@ import datetime
 from pathlib import Path
 
 import numpy as np
-from sklearn.model_selection import KFold
+from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
@@ -138,14 +138,14 @@ class knn_classifier_lid_and_hubness_weight:
 def cross_validate(X, y, classifiers, n_jobs=1, n_neighbours=3):
     X = np.array(X)
     y = np.array(y)
-    kf = KFold(n_splits=5, shuffle=True, random_state=42)
+    kf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
     knn_hubness = KNeighborsClassifier(n_neighbors=n_neighbours, n_jobs=n_jobs)
     knn_lid = KNeighborsClassifier(n_neighbors=100, n_jobs=n_jobs)
 
     accuracies = {}
     for classifier in classifiers:
         accuracies.update({classifier._name: []})
-    for train_index, test_index in kf.split(X):
+    for train_index, test_index in kf.split(X, y):
         x_train, x_test = X[train_index], X[test_index]
         y_train, y_test = y[train_index], y[test_index]
 
