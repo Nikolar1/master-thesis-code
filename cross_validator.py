@@ -181,9 +181,9 @@ if __name__ == '__main__':
     # datasets_to_check = datasets
     for dataset_title, dataset_name in datasets_to_check.items():
         Y, X = dataset_analysis.load_dataset(dataset_name)
-        # scaler = StandardScaler()
-        # X = scaler.fit_transform(X)
-        k_values = [60, 80, 100]
+        scaler = StandardScaler()
+        X = scaler.fit_transform(X)
+        k_values = range(1,11,1)
         knn_scores = []
         knn_hubness_weighted_scores = []
         knn_lid_weighted_scores = []
