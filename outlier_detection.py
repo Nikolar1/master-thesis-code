@@ -8,7 +8,7 @@ from sklearn.neighbors import LocalOutlierFactor
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 
-from utils import calculate_lid_normalized, calculate_hubness_normalized, find_outliers_knn
+from utils import calculate_hubness_normalized, find_outliers_knn, calculate_lid_weights
 import dataset_analysis
 
 
@@ -17,7 +17,7 @@ def sort_by_score(scores):
     return sorted_indices
 
 def calculate_scores(hubness_results, lid_results):
-    return lid_results - 0.8 * hubness_results
+    return lid_results - 0.5 * hubness_results
 
 def convert_labels(labels):
     return [1 if label == "yes" else 0 for label in labels]
@@ -31,7 +31,7 @@ def precission_at_n(indcies, labels, n):
     return count / n
 
 if __name__ == '__main__':
-    k_max = 301
+    k_max = 101
     k_min = 40
     increments = 5
     n_jobs=12
@@ -78,8 +78,8 @@ if __name__ == '__main__':
             lof_scores = -lof.negative_outlier_factor_
             knn_scores = find_outliers_knn(data, n_jobs=12, n_neighbors=k)
 
-            hubness_results = calculate_hubness_normalized(data, labels, pre_trained_classifier=knn, n_neighbors=k, n_jobs=12)
-            lid_results = calculate_lid_normalized(data, labels, pre_trained_classifier=knn, n_neighbors=k, n_jobs=12)
+            hubness_results = calculate_hubness_normalized(data, labels, pre_trained_classifier=None, n_neighbors=min(len(labels) - 1, k * 10), n_jobs=12)
+            lid_results = calculate_lid_weights(data, labels, pre_trained_classifier=knn, n_neighbors=k, n_jobs=12)
             dataset_values.update({k: (hubness_results.tolist(),lid_results.tolist())})
 
             combined_scores = calculate_scores(hubness_results, lid_results)
