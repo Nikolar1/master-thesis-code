@@ -107,10 +107,20 @@ class knn_classifier_lid_and_hubness_weight:
     def __init__(self, k=3):
         self.k = k
 
-    def fit(self, X_train, y_train, pre_trained_classifier_lid = None, pre_trained_classifier_hubness = None):
+    def fit(
+            self, X_train, y_train,
+            pre_trained_classifier_lid = None,
+            pre_trained_classifier_hubness = None
+    ):
         self.X_train = X_train
         self.y_train = y_train
-        self.weights = calculate_lid_weights(X_train, y_train, n_jobs=12, n_neighbors=100, pre_trained_classifier=pre_trained_classifier_lid) + calculate_bad_hubness_weights(X_train, y_train, n_jobs=12, n_neighbors=self.k, pre_trained_classifier=pre_trained_classifier_hubness)
+        lid_weights = calculate_lid_weights(
+            X_train, y_train, n_jobs=12, n_neighbors=100,
+            pre_trained_classifier=pre_trained_classifier_lid)
+        hubness_weights = calculate_bad_hubness_weights(
+            X_train, y_train, n_jobs=12, n_neighbors=self.k,
+            pre_trained_classifier=pre_trained_classifier_hubness)
+        self.weights = lid_weights + hubness_weights
 
     def predict(self, X_test):
         predictions = [self._predict(x) for x in X_test]
@@ -154,7 +164,11 @@ def cross_validate(X, y, classifiers, n_jobs=1, n_neighbours=3):
 
         for classifier in classifiers:
             classifier_accuracies = accuracies.get(classifier._name)
-            classifier.fit(x_train, y_train, pre_trained_classifier_lid=knn_lid, pre_trained_classifier_hubness=knn_hubness)
+            classifier.fit(
+                x_train, y_train,
+                pre_trained_classifier_lid=knn_lid,
+                pre_trained_classifier_hubness=knn_hubness
+            )
 
             y_pred = classifier.predict(x_test)
             accuracy = accuracy_score(y_test, y_pred)
@@ -162,28 +176,29 @@ def cross_validate(X, y, classifiers, n_jobs=1, n_neighbours=3):
             classifier_accuracies.append(accuracy)
             accuracies.update({classifier._name: classifier_accuracies})
     for classifier in classifiers:
-        average = np.average(accuracies.get(classifier._name))
+        avg = np.average(accuracies.get(classifier._name))
         mean = np.mean(accuracies.get(classifier._name))
         accuracy = accuracies.get(classifier._name)
-        accuracies.update({classifier._name: (average, mean, accuracy)})
+        accuracies.update({classifier._name: (avg ,mean, accuracy)})
     return accuracies
 
 if __name__ == '__main__':
     timestamp = f"{datetime.datetime.now().timestamp()}".split(".")[0]
     datasets_to_check = {
-        "mfeat-factors":"mfeat-factors",
-        "mfeat-fourier":"mfeat-fourier",
-        "optdigits":"optdigits",
-        "segment":"segment",
-        "spectrometer":"spectrometer",
-        "vehicle":"vehicle"
+        # "Text snippets classified by author": "snippet_writers_ngram",
+        # "mfeat-factors":"mfeat-factors",
+        # "mfeat-fourier":"mfeat-fourier",
+        # "optdigits":"optdigits",
+        # "segment":"segment",
+        # "spectrometer":"spectrometer",
+        # "vehicle":"vehicle"
     }
-    # datasets_to_check = datasets
+    datasets_to_check = datasets
     for dataset_title, dataset_name in datasets_to_check.items():
         Y, X = dataset_analysis.load_dataset(dataset_name)
         scaler = StandardScaler()
         X = scaler.fit_transform(X)
-        k_values = range(1,11,1)
+        k_values = range(10,101,10)
         knn_scores = []
         knn_hubness_weighted_scores = []
         knn_lid_weighted_scores = []
@@ -197,7 +212,7 @@ if __name__ == '__main__':
                 knn_classifier_lid(k=k),
                 knn_classifier_lid_and_hubness_weight(k=k)
             ]
-            accuracy_scores = cross_validate(np.array(X), np.array(Y), classifiers, n_jobs=12, n_neighbours=k)
+            accuracy_scores = cross_validate(np.array(X), np.array(Y), classifiers, n_jobs=8, n_neighbours=k)
             knn_score = accuracy_scores.get(classifiers[0]._name)[1]
             knn_hubness_weighted_score = accuracy_scores.get(classifiers[1]._name)[1]
 

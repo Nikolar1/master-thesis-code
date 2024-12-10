@@ -6,7 +6,10 @@ from sklearn.neighbors import KNeighborsClassifier, NearestNeighbors
 import dataset_analysis
 
 
-def calculate_bad_hubness_weights(X, Y, pre_trained_classifier = None, n_jobs = 1, n_neighbors = 3):
+def calculate_bad_hubness_weights(
+        X, Y, pre_trained_classifier = None,
+        n_jobs = 1, n_neighbors = 3
+):
     if not pre_trained_classifier:
         knn = KNeighborsClassifier(n_neighbors=n_neighbors, n_jobs=n_jobs)
         knn.fit(X, Y)
@@ -23,6 +26,13 @@ def calculate_bad_hubness_weights(X, Y, pre_trained_classifier = None, n_jobs = 
     bad_hubness_standard_deviation = np.std(bad_hubness)
     mean_subtracted = bad_hubness - mean_bad_hubness
     return np.exp((mean_subtracted / bad_hubness_standard_deviation) * -1)
+
+def calculate_hubness_combined_normalized(X, Y, pre_trained_classifier = None, n_jobs = 1, n_neighbors = 3):
+    hubness_for_k = calculate_hubness_normalized(X, Y, pre_trained_classifier, n_jobs, n_neighbors)
+    # hubness_for_10_k = calculate_hubness_normalized(X, Y, None, n_jobs, min(len(Y) - 1, n_neighbors * 10))
+    hubness_for_5_k = calculate_hubness_normalized(X, Y, None, n_jobs, min(len(Y) - 1, n_neighbors * 10))
+    return (hubness_for_k + hubness_for_5_k) / 2
+
 
 def calculate_hubness_normalized(X, Y = None, pre_trained_classifier = None, n_jobs = 1, n_neighbors = 3):
     hubness = calculate_hubness(X, Y, pre_trained_classifier, n_jobs, n_neighbors)
@@ -60,7 +70,14 @@ def calculate_lid(X, Y, pre_trained_classifier = None, n_jobs = 1, n_neighbors =
     precomputed_knn_arrays = knn.kneighbors(return_distance=True)
     return np.array(skdim.id.MLE().fit_transform_pw(X=X, n_neighbors=n_neighbors, precomputed_knn_arrays=precomputed_knn_arrays, n_jobs=n_jobs))
 
-def calculate_lid_weights(X, Y, pre_trained_classifier = None, n_jobs = 1, n_neighbors = 3):
+def calculate_lid_weights_normalized(X, Y = None, pre_trained_classifier = None, n_jobs = 1, n_neighbors = 3):
+    lid = calculate_lid_weights(X, Y, pre_trained_classifier, n_jobs, n_neighbors)
+    lid_min = np.min(lid)
+    lid_max = np.max(lid)
+    return (lid - lid_min) / (lid_max - lid_min)
+
+def calculate_lid_weights(X, Y, pre_trained_classifier = None,
+                          n_jobs = 1, n_neighbors = 3):
     lid = calculate_lid(X, Y, pre_trained_classifier, n_jobs, n_neighbors)
     mean_lid = np.mean(lid)
     lid_standard_deviation = np.std(lid)
@@ -84,6 +101,21 @@ def find_outliers_knn(data, n_neighbors=3, n_jobs = 1):
     k_distances = distances[:, n_neighbors - 1]
 
     return k_distances
+
+def find_outliers_knn_weighted(X, Y, pre_trained_classifier = None, n_jobs = 1, n_neighbors = 3):
+    nn = NearestNeighbors(n_neighbors=n_neighbors, n_jobs=n_jobs)
+    nn.fit(X)
+
+    hubness_results = calculate_hubness_normalized(X, Y, pre_trained_classifier=None, n_neighbors=min(int(len(Y) * 0.8), n_neighbors * 10), n_jobs=12)
+    hubness_results = (hubness_results * 0.5 )
+    lid_results = calculate_lid_normalized(X, Y, pre_trained_classifier=pre_trained_classifier, n_neighbors=n_neighbors, n_jobs=12)
+
+    scores = lid_results - hubness_results
+
+    distances, _ = nn.kneighbors(X=X, return_distance=True)
+    k_distances = distances[:, n_neighbors - 1]
+
+    return np.array(k_distances) * scores
 
 if __name__ == '__main__':
     Y, X = dataset_analysis.load_dataset("musk")

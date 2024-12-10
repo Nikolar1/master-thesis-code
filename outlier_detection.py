@@ -8,7 +8,7 @@ from sklearn.neighbors import LocalOutlierFactor
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 
-from utils import calculate_hubness_normalized, find_outliers_knn, calculate_lid_weights
+from utils import calculate_hubness_normalized, find_outliers_knn, calculate_lid_weights, find_outliers_knn_weighted
 import dataset_analysis
 
 
@@ -31,34 +31,34 @@ def precission_at_n(indcies, labels, n):
     return count / n
 
 if __name__ == '__main__':
-    k_max = 101
+    k_max = 201
     k_min = 40
     increments = 5
-    n_jobs=12
+    n_jobs=8
     scores_for_dataset = {}
     metrics_for_dataset = {}
     datasets = [
-        "Wilt_withoutdupl_norm_02_v10_outliers",
-        "Stamps_withoutdupl_norm_05_v10_outliers",
-        "SpamBase_withoutdupl_norm_20_v10_outliers",
-        "Pima_withoutdupl_norm_20_v10_outlier",
-        "Parkinson_withoutdupl_norm_20_v10_outliers",
-        "PageBlocks_withoutdupl_norm_05_v10_outliers",
-        "Hepatitis_withoutdupl_norm_10_v10_outliers",
+        # "Wilt_withoutdupl_norm_02_v10_outliers",
+        # "Stamps_withoutdupl_norm_05_v10_outliers",
+        # "SpamBase_withoutdupl_norm_20_v10_outliers",
+        # "Pima_withoutdupl_norm_20_v10_outlier",
+        # "Parkinson_withoutdupl_norm_20_v10_outliers",
+        # "PageBlocks_withoutdupl_norm_05_v10_outliers",
+        # "Hepatitis_withoutdupl_norm_10_v10_outliers",
         "HeartDisease_withoutdupl_norm_20_v10_outliers",
         "Cardiotocography_withoutdupl_norm_20_v10_outliers",
         "Arrhythmia_withoutdupl_norm_20_v10_outliers",
         "Annthyroid_05_v10_outlier",
         "glass_outlier",
         "Waveform_withoutdupl_norm_v10_outlier",
-        "WBC_withoutdupl_norm_v10_outlier",
-        "WDBC_withoutdupl_norm_v10_outlier",
-        "WPBC_withoutdupl_norm_outlier",
-        "Shuttle_withoutdupl_norm_v10_outlier",
-        "KDDCup99_withoutdupl_norm_catremoved_outlier",
-        "PenDigits_withoutdupl_norm_v10_outlier",
-        "ALOI_withoutdupl_norm_outlier",
-        "Ionosphere_withoutdupl_norm_outlier",
+        # "WBC_withoutdupl_norm_v10_outlier",
+        # "WDBC_withoutdupl_norm_v10_outlier",
+        # "WPBC_withoutdupl_norm_outlier",
+        # "Shuttle_withoutdupl_norm_v10_outlier",
+        # "KDDCup99_withoutdupl_norm_catremoved_outlier",
+        # "PenDigits_withoutdupl_norm_v10_outlier",
+        # "ALOI_withoutdupl_norm_outlier",
+        # "Ionosphere_withoutdupl_norm_outlier",
     ]
     for dataset_name in datasets:
         labels, data = dataset_analysis.load_dataset(dataset_name)
@@ -78,11 +78,11 @@ if __name__ == '__main__':
             lof_scores = -lof.negative_outlier_factor_
             knn_scores = find_outliers_knn(data, n_jobs=12, n_neighbors=k)
 
-            hubness_results = calculate_hubness_normalized(data, labels, pre_trained_classifier=None, n_neighbors=min(len(labels) - 1, k * 10), n_jobs=12)
-            lid_results = calculate_lid_weights(data, labels, pre_trained_classifier=knn, n_neighbors=k, n_jobs=12)
-            dataset_values.update({k: (hubness_results.tolist(),lid_results.tolist())})
+            # hubness_results = calculate_hubness_normalized(data, labels, pre_trained_classifier=None, n_neighbors=min(int(len(labels)*0.8), k * 10), n_jobs=12)
+            # lid_results = calculate_lid_weights(data, labels, pre_trained_classifier=knn, n_neighbors=k, n_jobs=12)
+            # dataset_values.update({k: (hubness_results.tolist(),lid_results.tolist())})
 
-            combined_scores = calculate_scores(hubness_results, lid_results)
+            combined_scores = find_outliers_knn_weighted(data, labels, pre_trained_classifier=knn, n_neighbors=k, n_jobs=n_jobs)
 
 
             roc_auc_val = roc_auc_score(binary_labels, combined_scores)
@@ -151,23 +151,20 @@ if __name__ == '__main__':
             axes[0].set_xlabel('k')
             axes[0].set_ylabel('ROC AUC')
             axes[0].set_title('ROC AUC')
-            axes[0].legend()
 
-            axes[1].plot(k_values, average_precision_vals, label="LID-HUB Average Precision")
-            axes[1].plot(k_values, lof_average_precision_vals, label="LOF Average Precision")
-            axes[1].plot(k_values, knn_average_precision_vals, label="KNN Average Precision")
+            axes[1].plot(k_values, average_precision_vals, label="LID-HUB prosek preciznosti")
+            axes[1].plot(k_values, lof_average_precision_vals, label="LOF prosek preciznosti")
+            axes[1].plot(k_values, knn_average_precision_vals, label="KNN prosek preciznosti")
             axes[1].set_xlabel('k')
-            axes[1].set_ylabel('Average Precision')
-            axes[1].set_title('Average Precision')
-            axes[1].legend()
+            axes[1].set_ylabel('Prosek preciznosti')
+            axes[1].set_title('Prosek preciznosti')
 
-            axes[2].plot(k_values, precission_at_n_vals, label="LID-HUB Precision at N")
-            axes[2].plot(k_values, lof_precission_at_n_vals, label="LOF Precision at N")
-            axes[2].plot(k_values, knn_precission_at_n_vals, label="KNN Precision at N")
+            axes[2].plot(k_values, precission_at_n_vals, label="LID-HUB prosek preciznosti na N")
+            axes[2].plot(k_values, lof_precission_at_n_vals, label="LOF prosek preciznosti na N")
+            axes[2].plot(k_values, knn_precission_at_n_vals, label="KNN prosek preciznosti na N")
             axes[2].set_xlabel('k')
-            axes[2].set_ylabel('Precision at N')
-            axes[2].set_title('Precision at N')
-            axes[2].legend()
+            axes[2].set_ylabel('Prosek preciznosti na N')
+            axes[2].set_title('Prosek preciznosti na N')
 
             # Show the plots
             plt.tight_layout()

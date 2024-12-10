@@ -4577,3 +4577,7 @@
 2024-09-03 18:28:58,317 - Main - INFO - Correlation coefficients for k=60: LPCA: 0.8089126443470191  |||  MLE: 0.6612708834517123  |||  MLENB: 0.6612708834517123  |||  TLE: nan
 2024-09-03 18:28:58,318 - Main - INFO - Correlation coefficients for k=80: LPCA: 0.7774802325396717  |||  MLE: 0.6658875155298154  |||  MLENB: 0.6658875155298154  |||  TLE: nan
 2024-09-03 18:28:58,319 - Main - INFO - Correlation coefficients for k=100: LPCA: 0.7280910048232602  |||  MLE: 0.6228741153993824  |||  MLENB: 0.6228741153993824  |||  TLE: nan
+2024-09-17 20:36:15,806 - Main - INFO - ----------------------     Starting main.py       ----------------------------
+2024-09-17 20:36:15,816 - Main - INFO - Current run settings: DATASET_PERCENTAGE_FOR_BEST_K=None, DATASET_PERCENTAGE_FOR_ANALYSIS=None
+2024-09-17 20:36:15,816 - Main - INFO - Working on dataset 'Ovarian'
+2024-09-17 20:36:15,816 - Main - INFO - Dataset 'Ovarian' with 20, analyzing dataset...
